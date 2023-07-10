@@ -114,7 +114,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
    ),
 }
 
@@ -125,10 +125,10 @@ local_development = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BatGenomeDB',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'HOST': 'host.docker.internal',
+        'PORT': '3307',
         'USER': 'root',
-        'PASSWORD': '1234'
+        'PASSWORD': 'popowhee123'
     }
 }
 
