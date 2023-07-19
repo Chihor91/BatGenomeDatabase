@@ -98,7 +98,7 @@ TEMPLATES = [
     },
 ]
 
-# AUTH_USER_MODEL = 'User.Account'
+AUTH_USER_MODEL = 'User.Account'
 ASGI_APPLICATION = "BatGenomeDatabase.asgi.application"
 WSGI_APPLICATION = 'BatGenomeDatabase.wsgi.application'
 
