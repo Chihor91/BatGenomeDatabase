@@ -126,9 +126,9 @@ local_development = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BatGenomeDB',
         'HOST': 'host.docker.internal',
-        'PORT': '3307',
+        'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'popowhee123'
+        'PASSWORD': 'pass'
     }
 }
 
