@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -118,6 +119,14 @@ REST_FRAMEWORK = {
    ),
 }
 
+SIMPLE_JWT={
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': True,
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -126,9 +135,9 @@ local_development = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BatGenomeDB',
         'HOST': 'host.docker.internal',
-        'PORT': '3306',
+        'PORT': '3307',
         'USER': 'root',
-        'PASSWORD': 'pass'
+        'PASSWORD': 'popowhee123'
     }
 }
 
@@ -154,7 +163,7 @@ remote_development = {
     }
 }
 
-DATABASES = to_push
+DATABASES = local_development
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
