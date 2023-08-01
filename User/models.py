@@ -5,7 +5,7 @@ import os
 
 class AccountManager(BaseUserManager):
 
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, password=None, **other_fields):
 
         if not email:
             raise ValueError("Users must have an email address")
@@ -18,13 +18,28 @@ class AccountManager(BaseUserManager):
         )
 
         # user.is_active = True
-        user.role = 2
+        if other_fields.get('is_superuser') is not True:
+            user.role = 2
+        else:
+            user.role = 1
 
         user.set_password(password)
         user.save() 
 
         return user
+    
+    def create_superuser(self, email, username, password, **other_fields):
+        other_fields.setdefault('is_staff', True)
+        other_fields.setdefault('is_superuser', True)
+        other_fields.setdefault('is_active', True)
 
+        if other_fields.get('is_staff') is not True:
+            raise ValueError("is_staff must be set to True")
+        if other_fields.get('is_superuser') is not True:
+            raise ValueError("is_superuser must be set to True")
+        
+        return self.create_user(email, username, password, **other_fields)
+    
     def create_admin(self, email, username, password=None):
 
         if not email:
@@ -65,6 +80,8 @@ class Account(AbstractBaseUser):
     address         = models.TextField(null=True)
     image           = models.ImageField(upload_to=get_account_image_upload_path, null=True)
     role            = models.IntegerField() # 1 - admin, 2 - user
+    is_admin        = models.BooleanField(default=False)
+    is_staff        = models.BooleanField(default=False)
     
     USERNAME_FIELD  = 'username'
     REQUIRED_FIELDS  = ['email']
