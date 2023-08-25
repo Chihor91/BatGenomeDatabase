@@ -156,14 +156,14 @@ remote_development = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BatGenomeDB',
-        'HOST': '202.92.144.124', # uplb 
+        'HOST': 'host.docker.internal', # uplb 
         'PORT': '3306',
-        'USER': 'admin', # uplb
-        'PASSWORD': 'uplbserv1234'#uplb
+        'USER': 'root', # uplb
+        'PASSWORD': '1234'#uplb
     }
 }
 
-DATABASES = local_development
+DATABASES = remote_development
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
